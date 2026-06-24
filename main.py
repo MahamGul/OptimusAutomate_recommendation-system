@@ -87,16 +87,82 @@ html, body, [data-testid="stAppViewContainer"] {
     border: 1px solid #1e1e1e;
 }
 
-/* ── Selectbox / Input ── */
-[data-testid="stSelectbox"] > div > div,
-[data-testid="stTextInput"] input {
-    background-color: #111 !important;
+/* ── Selectbox — forced dark, no double-box ── */
+/* Remove the outer wrapper background so only one box is visible */
+[data-testid="stSelectbox"] { background: transparent !important; }
+[data-testid="stSelectbox"] > div { background: transparent !important; border: none !important; }
+
+/* The actual visible control */
+[data-testid="stSelectbox"] > div > div {
+    background-color: #111111 !important;
     border: 1px solid #2a2a2a !important;
     border-radius: 8px !important;
     color: #EEEEEE !important;
+    box-shadow: none !important;
 }
 [data-testid="stSelectbox"] > div > div:hover {
     border-color: #CB2957 !important;
+}
+[data-testid="stSelectbox"] span,
+[data-testid="stSelectbox"] input {
+    background: transparent !important;
+    color: #EEEEEE !important;
+}
+/* SVG arrow icon */
+[data-testid="stSelectbox"] svg { fill: #888 !important; }
+
+/* ── Dropdown popover — dark card ── */
+[data-baseweb="popover"] > div,
+[data-baseweb="popover"] {
+    background-color: #111111 !important;
+    border: 1px solid #2a2a2a !important;
+    border-radius: 10px !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.7) !important;
+}
+[data-baseweb="menu"] {
+    background-color: #111111 !important;
+    border-radius: 10px !important;
+}
+[data-baseweb="select"] ul,
+[data-baseweb="select"] li,
+ul[data-testid="stSelectboxVirtualDropdown"],
+ul[data-testid="stSelectboxVirtualDropdown"] li {
+    background-color: #111111 !important;
+    color: #CCCCCC !important;
+}
+[data-baseweb="option"] {
+    background-color: #111111 !important;
+    color: #CCCCCC !important;
+}
+[data-baseweb="option"]:hover {
+    background-color: #1e1e1e !important;
+    color: #CB2957 !important;
+}
+[data-baseweb="option"][aria-selected="true"] {
+    background-color: #1a0008 !important;
+    color: #CB2957 !important;
+}
+/* Search input inside the dropdown */
+input[aria-autocomplete="list"] {
+    background-color: #0d0d0d !important;
+    color: #EEEEEE !important;
+    border: 1px solid #2a2a2a !important;
+    border-radius: 6px !important;
+}
+
+/* ── Selectbox label styling */
+[data-testid="stSelectbox"] label {
+    color: #CB2957 !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 0.25rem !important;
+}
+/* Kill extra padding/margin around selectbox container */
+[data-testid="stSelectbox"] {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 /* ── Primary button ── */
@@ -207,6 +273,22 @@ html, body, [data-testid="stAppViewContainer"] {
     background: linear-gradient(90deg, #CB2957, #ff6b9d);
 }
 
+/* ── Match quality badge ── */
+.match-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 0.3rem;
+}
+.badge-excellent { background: #1a0008; color: #CB2957; border: 1px solid #CB2957; }
+.badge-great     { background: #0d1200; color: #7ecb4a; border: 1px solid #7ecb4a; }
+.badge-good      { background: #0d0d1a; color: #6b9dff; border: 1px solid #6b9dff; }
+.badge-fair      { background: #131000; color: #c8a84b; border: 1px solid #c8a84b; }
+
 /* ── Vibe tag ── */
 .vibe-box {
     background: #120008;
@@ -285,6 +367,69 @@ html, body, [data-testid="stAppViewContainer"] {
     font-weight: 700;
 }
 
+/* ── How it works panel ── */
+.how-it-works {
+    background: #0a0a0a;
+    border: 1px solid #1e1e1e;
+    border-radius: 12px;
+    padding: 1.1rem 1.4rem;
+    margin: 1rem 0 1.5rem 0;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.hiw-icon {
+    font-size: 2rem;
+    line-height: 1;
+    margin-top: 0.1rem;
+}
+.hiw-body { flex: 1; min-width: 180px; }
+.hiw-title {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: #CB2957;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+}
+.hiw-desc {
+    font-size: 0.82rem;
+    color: #777;
+    line-height: 1.6;
+}
+.hiw-steps {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.65rem;
+    flex-wrap: wrap;
+}
+.hiw-step {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 6px;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.72rem;
+    color: #888;
+}
+.hiw-step strong {
+    color: #CB2957;
+}
+
+/* ── Score legend ── */
+.score-legend {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+    align-items: center;
+}
+.legend-label {
+    font-size: 0.72rem;
+    color: #444;
+    margin-right: 0.2rem;
+}
+
 /* ── Section titles ── */
 .section-heading {
     font-family: 'Bebas Neue', sans-serif;
@@ -353,7 +498,6 @@ st.markdown("""
 # SIDEBAR
 # ─────────────────────────────────────────────
 with st.sidebar:
-    # ── Brand mark ──
     st.markdown("""
     <div style="text-align:center; padding: 1.2rem 0 0.5rem 0;">
         <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; letter-spacing:0.1em;
@@ -369,27 +513,24 @@ with st.sidebar:
     <hr style="border:none; border-top:1px solid #1a1a1a; margin: 0.5rem 0 1.2rem 0;">
     """, unsafe_allow_html=True)
 
-    # ── Algorithm ──
     st.markdown('<p style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:#CB2957;font-weight:700;margin-bottom:0.4rem;">⚙ Algorithm</p>', unsafe_allow_html=True)
     model_type = st.radio(
         "Algorithm",
-        ["Content-Based", "Collaborative", "Hybrid ✨"],
-        label_visibility="collapsed"
+        ["Content-Based", "Collaborative", "Hybrid"],
+
     )
 
     st.markdown('<hr style="border:none;border-top:1px solid #161616;margin:1rem 0;">', unsafe_allow_html=True)
 
-    # ── Results count ──
     st.markdown('<p style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:#CB2957;font-weight:700;margin-bottom:0.4rem;">🎯 How Many Results</p>', unsafe_allow_html=True)
     top_n = st.slider("Number of recommendations", 1, 15, 8, label_visibility="collapsed")
 
     st.markdown('<hr style="border:none;border-top:1px solid #161616;margin:1rem 0;">', unsafe_allow_html=True)
 
-    # ── Algorithm explainer cards ──
     algo_info = {
         "Content-Based": ("🎭", "Genre Match", "Finds movies sharing the same genres and release era as your pick."),
         "Collaborative": ("👥", "User Taste", "Recommends what people with similar ratings history also loved."),
-        "Hybrid ✨":     ("⚡", "Best of Both", "Blends genre similarity + user behaviour for the smartest picks."),
+        "Hybrid":     ("⚡", "Best of Both", "Blends genre similarity + user behaviour for the smartest picks."),
     }
     icon, label, desc = algo_info[model_type]
     st.markdown(f"""
@@ -401,7 +542,6 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Live stats ──
     st.markdown(f"""
     <div style="display:flex; flex-direction:column; gap:0.4rem;">
         <div style="background:#0a0a0a; border:1px solid #181818; border-radius:8px;
@@ -422,7 +562,6 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Footer ──
     st.markdown("""
     <div style="margin-top:1.5rem; text-align:center;">
         <div style="font-size:0.65rem; color:#2a2a2a; letter-spacing:0.1em;">
@@ -433,20 +572,86 @@ with st.sidebar:
 
 
 # ─────────────────────────────────────────────
+# HELPER — match quality badge
+# ─────────────────────────────────────────────
+def match_badge(score: float) -> str:
+    """Return HTML badge based on similarity score."""
+    if score >= 0.85:
+        return '<span class="match-badge badge-excellent">⭐ Excellent Match</span>'
+    elif score >= 0.65:
+        return '<span class="match-badge badge-great">✅ Great Match</span>'
+    elif score >= 0.40:
+        return '<span class="match-badge badge-good">👍 Good Match</span>'
+    else:
+        return '<span class="match-badge badge-fair">🔸 Fair Match</span>'
+
+
+# ─────────────────────────────────────────────
 # MAIN — MOVIE SELECTION
 # ─────────────────────────────────────────────
 movie_list = sorted(movies['title'].dropna().unique().tolist())
 
-col_sel, col_btn = st.columns([3, 1])
+col_sel, col_btn = st.columns([3, 1], vertical_alignment="bottom")
 with col_sel:
     selected_movie = st.selectbox(
-        "Search for a movie",
+        "🎬 Search for a movie",
         movie_list,
         placeholder="Start typing a movie title...",
-        label_visibility="collapsed"
+
     )
 with col_btn:
     run = st.button("Find Matches →")
+
+# ── How It Works panel (always visible below the search bar) ──
+algo_hiw = {
+    "Content-Based": {
+        "icon": "🎭",
+        "title": "Content-Based Filtering",
+        "desc": (
+            "Analyses the <strong style='color:#EEEEEE;'>genres and features</strong> of the movie you chose, "
+            "then finds other movies with the most similar attributes in our dataset. "
+            "Great for discovering films that feel tonally identical to your pick."
+        ),
+        "steps": ["You pick a movie", "We extract genres & tags", "Cosine similarity scores every other film", f"Top <strong>{top_n}</strong> closest matches returned"],
+    },
+    "Collaborative": {
+        "icon": "👥",
+        "title": "Collaborative Filtering",
+        "desc": (
+            "Looks at <strong style='color:#EEEEEE;'>how real users rated movies</strong> across the dataset. "
+            "If people who liked your movie also consistently loved certain others, those rise to the top. "
+            "Surfaces hidden gems you might never find on your own."
+        ),
+        "steps": ["You pick a movie", "We find users who rated it highly", "Their other top-rated films are ranked", f"Top <strong>{top_n}</strong> picks surfaced"],
+    },
+    "Hybrid": {
+        "icon": "⚡",
+        "title": "Hybrid Recommendation",
+        "desc": (
+            "Combines <strong style='color:#EEEEEE;'>both approaches</strong>: genre similarity + community ratings. "
+            "The scores are blended so a film needs to match your pick <em>and</em> be loved by real audiences. "
+            "The most accurate mode for well-known titles."
+        ),
+        "steps": ["Content score computed", "Collaborative score computed", "Scores weighted & merged", f"Top <strong>{top_n}</strong> best-of-both returned"],
+    },
+}
+
+hiw = algo_hiw[model_type]
+steps_html = "".join(
+    '<div class="hiw-step">' + ('&rarr; ' if i > 0 else '') + f'<strong>{i+1}.</strong> {s}</div>'
+    for i, s in enumerate(hiw["steps"])
+)
+
+st.markdown(f"""
+<div class="how-it-works">
+    <div class="hiw-icon">{hiw["icon"]}</div>
+    <div class="hiw-body">
+        <div class="hiw-title">{hiw["title"]}</div>
+        <div class="hiw-desc">{hiw["desc"]}</div>
+        <div class="hiw-steps">{steps_html}</div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 
 # ─────────────────────────────────────────────
@@ -500,19 +705,31 @@ with st.spinner("Finding your next binge..."):
 # ── Stats strip ──
 algo_label = {"Content-Based": "Genre & Feature Matching",
               "Collaborative": "User Behavior Patterns",
-              "Hybrid ✨": "Content + Collaborative Blend"}[model_type]
+              "Hybrid": "Content + Collaborative Blend"}[model_type]
 
 st.markdown(f"""
 <div class="stats-strip">
     <div class="stat-pill">Found <span>{len(results)}</span> matches</div>
     <div class="stat-pill">Method: <span>{algo_label}</span></div>
     <div class="stat-pill">Dataset: <span>{len(movies):,}</span> movies</div>
+    <div class="stat-pill">You requested top <span>{top_n}</span></div>
 </div>
 """, unsafe_allow_html=True)
 
 # ── Movie cards ──
 st.markdown('<div class="section-heading">Your Recommendations</div>', unsafe_allow_html=True)
-st.markdown('<div class="section-sub">Ranked by similarity score</div>', unsafe_allow_html=True)
+st.markdown('<div class="section-sub">Ranked by similarity score · the bar shows how close each film is to your pick</div>', unsafe_allow_html=True)
+
+# Score legend
+st.markdown("""
+<div class="score-legend">
+    <span class="legend-label">Match quality:</span>
+    <span class="match-badge badge-excellent">⭐ Excellent ≥ 0.85</span>
+    <span class="match-badge badge-great">✅ Great ≥ 0.65</span>
+    <span class="match-badge badge-good">👍 Good ≥ 0.40</span>
+    <span class="match-badge badge-fair">🔸 Fair &lt; 0.40</span>
+</div>
+""", unsafe_allow_html=True)
 
 if not results:
     st.warning(f"No recommendations found for **{selected_movie}** with this algorithm. Try switching to Hybrid mode.")
@@ -520,7 +737,6 @@ else:
     for i, movie in enumerate(results, 1):
         bar_width = int(movie["score"] * 100)
 
-        # For collab results, look up genres from movies_df
         genres = movie.get("genres", "")
         if not genres and movie["title"] in content_idx:
             genres = movies_df.iloc[content_idx[movie["title"]]]["genres"].replace(" ", ", ")
@@ -528,6 +744,7 @@ else:
         title = movie["title"]
         score = movie["score"]
         bar_w = max(bar_width, 5)
+        badge = match_badge(score)
 
         card_html = f"""<div class="movie-card">
             <div class="movie-rank">#{i:02d}</div>
@@ -537,7 +754,8 @@ else:
         if genres:
             card_html += f'<div class="movie-genres">{genres}</div>'
 
-        card_html += f"""<div class="movie-score-bar" style="width:{bar_w}%;"></div>
+        card_html += f"""{badge}
+                <div class="movie-score-bar" style="width:{bar_w}%;"></div>
             </div>
             <div style="color:#555; font-size:0.82rem; text-align:right; min-width:3.5rem;">
                 <span style="color:#CB2957; font-weight:700; font-size:1rem;">{score:.3f}</span><br>
