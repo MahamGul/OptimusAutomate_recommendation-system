@@ -15,7 +15,7 @@ Top recommendations: {formatted}
 Write 2-3 punchy sentences explaining why these fit. Mention genre/mood/themes. End with a hype line. No bullet points."""
 
         response = ollama.chat(
-            model="llama3",
+            model="phi3:mini",
             messages=[{"role": "user", "content": prompt}],
             options={"num_predict": 180, "temperature": 0.8}
         )

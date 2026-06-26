@@ -164,7 +164,44 @@ input[aria-autocomplete="list"] {
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
 }
+/* ── Selectbox popup scrollbar ── */
+[data-baseweb="popover"] {
+    max-height: 350px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
 
+/* Dropdown list itself */
+[data-baseweb="menu"] {
+    max-height: 320px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+/* Streamlit virtual dropdown */
+ul[data-testid="stSelectboxVirtualDropdown"] {
+    max-height: 320px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+[data-baseweb="popover"]::-webkit-scrollbar,
+[data-baseweb="menu"]::-webkit-scrollbar,
+ul[data-testid="stSelectboxVirtualDropdown"]::-webkit-scrollbar {
+    width: 8px;
+}
+
+[data-baseweb="popover"]::-webkit-scrollbar-track,
+[data-baseweb="menu"]::-webkit-scrollbar-track,
+ul[data-testid="stSelectboxVirtualDropdown"]::-webkit-scrollbar-track {
+    background: #111;
+}
+
+[data-baseweb="popover"]::-webkit-scrollbar-thumb,
+[data-baseweb="menu"]::-webkit-scrollbar-thumb,
+ul[data-testid="stSelectboxVirtualDropdown"]::-webkit-scrollbar-thumb {
+    background: #CB2957;
+    border-radius: 10px;
+}
 /* ── Primary button ── */
 [data-testid="stButton"] > button {
     background: linear-gradient(135deg, #CB2957 0%, #a01f44 100%) !important;
