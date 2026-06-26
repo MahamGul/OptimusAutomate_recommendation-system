@@ -10,8 +10,7 @@ venv/
 # Streamlit
 .streamlit/secrets.toml
 
-# Data (MovieLens CSVs can be large — let users download themselves)
-data/
+
 
 # OS
 .DS_Store
